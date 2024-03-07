@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Planilha para EDI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='caisp-icon.png') }}" alt="Logo CAISP" class="caisp-icon">
+        <h1>Conversor de Planilha para EDI</h1>
+        {% if success %}
+            <div class="success">Arquivo EDI gerado com sucesso! <a href="{{ url_for('static', filename='pedidos.txt') }}" download>Clique aqui para baixar</a>.</div>
+        {% endif %}
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label for="file" class="custom-file-upload"><i class="fas fa-file-upload"></i> Importar Planilha</label>
+            <input type="file" name="file" id="file">
+            <button type="submit"><i class="fas fa-upload"></i> Converter e Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
